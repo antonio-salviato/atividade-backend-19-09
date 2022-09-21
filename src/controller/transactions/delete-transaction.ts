@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { DB } from "../../db/db";
-import { Transaction } from "../../models/transactions";
+
 
 export class DeleteTransaction{
 execute(req: Request, res: Response){

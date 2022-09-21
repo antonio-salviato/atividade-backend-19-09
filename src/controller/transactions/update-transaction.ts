@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { title } from "process";
 import { DB } from "../../db/db";
-import { Transaction } from "../../models/transactions";
+
 
 export class UpdateTransaction{
 execute(req: Request, res: Response){

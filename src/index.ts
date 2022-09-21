@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 import { transactionRouter, userRouter } from './routes';
 import { DB } from './db/db';
 
