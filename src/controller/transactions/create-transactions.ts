@@ -1,12 +1,12 @@
-import { Request, Response } from "express";
-import { DB } from "../../db/db";
+import { Response } from "express";
+import { CustomRequest } from "../../@types/express";
 import { Transaction } from "../../models/transactions";
 
 export class CreateTransaction{
-execute(req: Request, res: Response){
-    try {
-        //@ts-ignore
-        const {user} = req
+    execute(req: CustomRequest, res: Response) {
+        try {
+    
+          const {user} = req
         console.log(user)
         const {title, value, type} = req.body
 

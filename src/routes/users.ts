@@ -9,26 +9,44 @@ import { DeleteUser } from "../controller/users/delete-user";
 import { FindUserById } from "../controller/users/find-userbyID";
 import { GetAllUser } from "../controller/users/get-all-user";
 import { UpdateUser } from "../controller/users/update-user";
-
+import { HasUserMiddleware } from "../middleware/has-User";
 
 export const userRouter = Router();
 
-userRouter.get('/', new GetAllUser().execute);
+userRouter.get("/", new GetAllUser().execute);
 
-userRouter.get('/:userId', new FindUserById().execute);
+userRouter.get("/:userId", new FindUserById().execute);
 
-userRouter.delete('/:userId', new DeleteUser().execute);
+userRouter.delete("/:userId", new DeleteUser().execute);
 
-userRouter.put('/:userId', new UpdateUser().execute);
-    
-userRouter.post('/:userId/transactions', new CreateTransaction().execute);
+userRouter.put("/:userId", new UpdateUser().execute);
 
-userRouter.get('/:userId/transactions', new GetTransactionByUser().execute);
+userRouter.post(
+  "/:userId/transactions",
+  new HasUserMiddleware().execute,
+  new CreateTransaction().execute
+);
 
-userRouter.get('/:userId/transactions/:id', new GetTransactionById().execute);
+userRouter.get(
+  "/:userId/transactions",
+  new HasUserMiddleware().execute,
+  new GetTransactionByUser().execute
+);
 
-userRouter.put('/:userId/transactions/:id', new UpdateTransaction().execute);
+userRouter.get(
+  "/:userId/transactions/:id",
+  new HasUserMiddleware().execute,
+  new GetTransactionById().execute
+);
 
-userRouter.delete('/:userId/transactions/:id', new DeleteTransaction().execute);
+userRouter.put(
+  "/:userId/transactions/:id",
+  new HasUserMiddleware().execute,
+  new UpdateTransaction().execute
+);
 
-
+userRouter.delete(
+  "/:userId/transactions/:id",
+  new HasUserMiddleware().execute,
+  new DeleteTransaction().execute
+);

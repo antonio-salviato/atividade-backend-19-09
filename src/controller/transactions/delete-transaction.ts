@@ -1,15 +1,14 @@
-import { Request, Response } from "express";
-import { DB } from "../../db/db";
+import { Response } from "express";
+import { CustomRequest } from "../../@types/express";
+
 
 
 export class DeleteTransaction{
-execute(req: Request, res: Response){
+  execute(req: CustomRequest, res: Response) {
     try {
-        const {userId, id} = req.params
-        const user = DB.userDb.find(user => user.id === userId)
-        if(!user){
-            return res.status(404).json({message:'Not Found ID'})
-          }
+
+      const {user} = req
+        const {id} = req.params
         const transaction = user.transactions.find(t => t.id === id)
         if(!transaction){
             return res.status(404).json({message:'Not Found Transaction'})

@@ -11,9 +11,9 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
-userRouter.post('/users', new CreateUser().execute);
+app.post('/users', new CreateUser().execute);
 
-app.use('/users', new HasUserMiddleware().execute, userRouter)
+app.use('/users', userRouter)
 
 app.use('/transactions', transactionRouter)
 
