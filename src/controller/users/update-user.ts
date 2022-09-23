@@ -6,7 +6,7 @@ export class UpdateUser{
 execute(req: Request, res: Response){
     try {
       const {id} = req.params
-      const {name, cpf, email, age} = req.body
+      const {name, email, age} = req.body
       const user = DB.userDb.find(user => user.id === id )
       
       if(!user){
@@ -16,10 +16,8 @@ execute(req: Request, res: Response){
       if(name){ 
           user.name = name
       }
-      if(cpf){ 
-        user.cpf = cpf
-    }
-    if(email){ 
+      
+      if(email){ 
         user.email = email
     }
     if(age){ 
