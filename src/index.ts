@@ -1,8 +1,9 @@
 import express from 'express';
-import { transactionRouter, userRouter } from './routes';
 import { DB } from './db/db';
 import { CreateUser } from './controller/users/create-user';
 import { HasUserMiddleware } from './middleware/has-User';
+import { transactionRouter } from './routes/transactions';
+import { userRouter } from './routes/users';
 
 
 const app = express();

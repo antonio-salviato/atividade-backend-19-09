@@ -13,6 +13,8 @@ import { HasUserMiddleware } from "../middleware/has-User";
 
 export const userRouter = Router();
 
+userRouter.get("/user", new CreateUser().execute);
+
 userRouter.get("/", new GetAllUser().execute);
 
 userRouter.get("/:userId", new FindUserById().execute);
